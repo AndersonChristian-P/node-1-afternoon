@@ -1,21 +1,13 @@
 const express = require("express")
 
-const getProducts = require("./getProducts")
-
-const getProduct = require("./getProduct")
+const productCtrl = require("./productCtrl")
 
 const app = express()
+const port = 7163
 
-const port = 5153
-
-
-app.get("/api/products", getProducts)
-
-app.get("/api/products/:id", getProduct)
+app.get("/api/products", productCtrl.getProducts)
+app.get("/api/products/:id", productCtrl.getProductsById)
+app.get("/api/product", productCtrl.getProductByPrice)
 
 
-
-app.listen(port, () => {
-  console.log("listening on port: ", port)
-})
-
+app.listen(port, () => console.log(`listening on port ${port}`));
